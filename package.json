@@ -11,7 +11,11 @@
   },
   "devDependencies": {
     "grunt": "~0.4.5",
-    "react-rcs": "git://github.com/icodeforlove/react-rcs.git"
+    "react-rcs": "git://github.com/icodeforlove/react-rcs.git",
+    "grunt-browserify": "~2.1.3",
+    "grunt-react": "~0.8.2",
+    "grunt-react-rcs": "0.0.1",
+    "grunt-contrib-watch": "~0.6.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
