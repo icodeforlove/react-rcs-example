@@ -1,0 +1,22 @@
+{
+  "name": "react-rcs-example",
+  "version": "0.0.0",
+  "description": "TodoMVC example using React, and RCS.",
+  "main": "Gruntfile.js",
+  "dependencies": {},
+  "browser": {
+    "director": "./bower_components/director/build/director.js",
+    "react-with-addons": "./bower_components/react/react-with-addons.js",
+    "react-rcs": "./bower_components/react-rcs/rcs.min.js"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "react-rcs": "git://github.com/icodeforlove/react-rcs.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC"
+}

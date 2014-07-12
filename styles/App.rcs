@@ -1,0 +1,148 @@
+button {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	background: none;
+	font-size: 100%;
+	vertical-align: baseline;
+	font-family: inherit;
+	color: inherit;
+	appearance: none;
+	outline: none;
+}
+
+button, input {
+	outline: none;
+}
+
+body {
+	font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	line-height: 1.4em;
+	background: #eaeaea url('bg.png');
+	color: #4d4d4d;
+	width: 550px;
+	margin: 0 auto;
+	font-smoothing: antialiased;
+}
+
+view {
+	background: #fff;
+	background: rgba(255, 255, 255, 0.9);
+	margin: 130px 0 40px 0;
+	border: 1px solid #ccc;
+	position: relative;
+	border-top-left-radius: 2px;
+	border-top-right-radius: 2px;
+	box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.15);
+
+	::before {
+		content: '';
+		border-left: 1px solid #f5d6d6;
+		border-right: 1px solid #f5d6d6;
+		width: 2px;
+		position: absolute;
+		top: 0;
+		left: 40px;
+		height: 100%;
+	}
+}
+
+.header {
+	padding-top: 15px;
+	border-radius: inherit;
+
+	:before {
+		content: '';
+		position: absolute;
+		top: 0;
+		right: 0;
+		left: 0;
+		height: 15px;
+		z-index: 2;
+		border-bottom: 1px solid #6c615c;
+		background: gradient(rgba(132, 110, 100, 0.8), rgba(101, 84, 76, 0.8));
+		border-top-left-radius: 1px;
+		border-top-right-radius: 1px;
+	}
+}
+
+view h1 {
+	position: absolute;
+	top: -120px;
+	width: 100%;
+	font-size: 70px;
+	font-weight: bold;
+	text-align: center;
+	color: #b3b3b3;
+	color: rgba(255, 255, 255, 0.3);
+	text-shadow: -1px -1px rgba(0, 0, 0, 0.2);
+	text-rendering: optimizeLegibility;
+}
+
+.main {
+	position: relative;
+	z-index: 2;
+	border-top: 1px dotted #adadad;
+}
+
+.new-todo {
+	position: relative;
+	margin: 0;
+	width: 100%;
+	font-size: 24px;
+	font-family: inherit;
+	line-height: 1.4em;
+	border: 0;
+	outline: none;
+	color: inherit;
+	padding: 6px;
+	border: 1px solid #999;
+	box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
+	box-sizing: border-box;
+	font-smoothing: antialiased;
+
+	padding: 16px 16px 16px 60px;
+	border: none;
+	background: rgba(0, 0, 0, 0.02);
+	z-index: 2;
+	box-shadow: none;
+}
+
+.toggle-all {
+	position: absolute;
+	top: -42px;
+	left: -4px;
+	width: 40px;
+	text-align: center;
+	// Mobile Safari
+	border: none;
+
+	:before {
+		content: "»";
+		font-size: 28px;
+		color: #d9d9d9;
+		padding: 0 25px 7px;
+	}
+
+	:checked:before {
+		color: #737373;
+	}
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	.toggle-all {
+		background: none;
+		top: -56px;
+		left: -15px;
+		width: 65px;
+		height: 41px;
+		transform: rotate(90deg);
+		appearance: none;
+	}
+}
+
+.todo-list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
