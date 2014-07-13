@@ -4,7 +4,7 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 		rcs: {
 			all: {
-				src: ['styles/*.rcs'],
+				src: ['scripts/**/*.rcs'],
 				dest: 'build/app.css'
 			},
 
@@ -26,7 +26,7 @@ module.exports = function(grunt) {
 				]
 			},
 			build: {
-				src: ['scripts/App.js'],
+				src: ['scripts/main.js'],
 				dest: 'build/app.js',
 				options: {
 					noparse: ['react-with-addons'],
@@ -37,15 +37,44 @@ module.exports = function(grunt) {
 			}
 		},
 
+		concat: {
+		    options: {
+		      separator: ';',
+		    },
+			build: {
+				src: [
+					//'./bower_components/jquery/dist/jquery.min.js',
+					'./bower_components/zepto/zepto.min.js',
+					'./bower_components/underscore/underscore.js',
+					'./bower_components/backbone/backbone.js',
+					'./bower_components/backbone.localstorage/backbone.localstorage.js',
+					'./bower_components/react/react-with-addons.js',
+					//'./scripts/rcs.settings.js',
+					'./bower_components/react-rcs/rcs.js',
+					//'./bower_components/react-rcs/rcs-with-transformer.js',
+					//'build/app.js'
+				],
+				dest: 'build/libs.js'
+			}
+		},
+
+		uglify: {
+			my_target: {
+				files: {
+					'build/main.min.js': ['build/libs.js', 'build/app.js']
+				}
+			}
+		},
+
 		watch: {
 			rcs: {
-				files: ['styles/*.rcs'],
+				files: ['scripts/**/*.rcs'],
 				tasks: ['rcs:all']
 			},
 
 			jsx: {
-				files: ['scripts/*.js', 'scripts/*.jsx'],
-				tasks: ['build']
+				files: ['scripts/**/*.js', 'scripts/**/*.jsx'],
+				tasks: ['build-dev']
 			}
 		}
 	});
@@ -54,6 +83,9 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-react');
 	grunt.loadNpmTasks('grunt-react-rcs');
 	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-contrib-concat');
+	grunt.loadNpmTasks('grunt-contrib-uglify');
 
-	grunt.registerTask('build', ['browserify', 'rcs:all']);
+	grunt.registerTask('build-dev', ['browserify', 'concat', 'rcs:all']);
+	grunt.registerTask('build', ['browserify', 'concat', 'uglify', 'rcs:all']);
 };

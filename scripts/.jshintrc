@@ -1,0 +1,8 @@
+{
+	"node": true,
+	"browser": true,
+	"globals": {
+		"React": false,
+		"Backbone": false
+	}
+}

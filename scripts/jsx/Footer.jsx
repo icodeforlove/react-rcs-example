@@ -3,18 +3,17 @@
  */
  'use strict';
  
-var Constants = require('./Constants'),
-	Utils = require('./Utils');
+var Constants = require('../Constants');
 
 var Footer = React.createClass({
 	render: function () {
-		var activeTodoWord = Utils.pluralize(this.props.count, 'item');
+		var activeTodoWord = this.props.count === 1 ? 'item' : 'items';
 		var clearButton = null;
 
 		if (this.props.completedCount > 0) {
 			clearButton = (
 				<button
-					class="clear-completed"
+					classes="clear-completed"
 					onClick={this.props.onClearCompleted}>
 					Clear completed ({this.props.completedCount})
 				</button>
@@ -25,15 +24,15 @@ var Footer = React.createClass({
 		var cx = React.addons.classSet;
 		var nowShowing = this.props.nowShowing;
 		return (
-			<footer class="footer">
-				<span class="todo-count">
+			<footer classes="footer">
+				<span classes="todo-count">
 					<strong>{this.props.count}</strong> {activeTodoWord} left
 				</span>
-				<ul class="filters">
+				<ul classes="filters">
 					<li>
 						<a
 							href="#/"
-							class={cx({selected: nowShowing === Constants.ALL_TODOS})}>
+							classes={cx({selected: nowShowing === Constants.ALL_TODOS})}>
 								All
 						</a>
 					</li>
@@ -41,7 +40,7 @@ var Footer = React.createClass({
 					<li>
 						<a
 							href="#/active"
-							class={cx({selected: nowShowing === Constants.ACTIVE_TODOS})}>
+							classes={cx({selected: nowShowing === Constants.ACTIVE_TODOS})}>
 								Active
 						</a>
 					</li>
@@ -49,7 +48,7 @@ var Footer = React.createClass({
 					<li>
 						<a
 							href="#/completed"
-							class={cx({selected: nowShowing === Constants.COMPLETED_TODOS})}>
+							classes={cx({selected: nowShowing === Constants.COMPLETED_TODOS})}>
 								Completed
 						</a>
 					</li>

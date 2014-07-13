@@ -1,7 +1,7 @@
 button {
-	margin: 0;
-	padding: 0;
-	border: 0;
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
 	background: none;
 	font-size: 100%;
 	vertical-align: baseline;
@@ -11,7 +11,7 @@ button {
 	outline: none;
 }
 
-button, input {
+input {
 	outline: none;
 }
 

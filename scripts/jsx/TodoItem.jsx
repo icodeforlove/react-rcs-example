@@ -7,6 +7,10 @@ var ESCAPE_KEY = 27;
 var ENTER_KEY = 13;
 
 var TodoItem = React.createClass({
+	getInitialState: function () {
+		return {editText: this.props.todo.get('title')};
+	},
+
 	handleSubmit: function () {
 		var val = this.state.editText.trim();
 		if (val) {
@@ -28,12 +32,12 @@ var TodoItem = React.createClass({
 			node.focus();
 			node.setSelectionRange(node.value.length, node.value.length);
 		}.bind(this));
-		this.setState({editText: this.props.todo.title});
+		this.setState({editText: this.props.todo.get('title')});
 	},
 
 	handleKeyDown: function (event) {
 		if (event.which === ESCAPE_KEY) {
-			this.setState({editText: this.props.todo.title});
+			this.setState({editText: this.props.todo.get('title')});
 			this.props.onCancel();
 		} else if (event.which === ENTER_KEY) {
 			this.handleSubmit();
@@ -42,47 +46,30 @@ var TodoItem = React.createClass({
 
 	handleChange: function (event) {
 		this.setState({editText: event.target.value});
-	},
-
-	getInitialState: function () {
-		return {editText: this.props.todo.title};
-	},
-
-	/**
-	 * This is a completely optional performance enhancement that you can implement
-	 * on any React component. If you were to delete this method the app would still
-	 * work correctly (and still be very performant!), we just use it as an example
-	 * of how little code it takes to get an order of magnitude performance improvement.
-	 */
-	shouldComponentUpdate: function (nextProps, nextState) {
-		return (
-			nextProps.todo !== this.props.todo ||
-			nextProps.editing !== this.props.editing ||
-			nextState.editText !== this.state.editText
-		);
+		this.props.todo.save();
 	},
 
 	render: function () {
 		return (
-			<li class={React.addons.classSet({
-				":::completed": this.props.todo.completed,
-				":::editing": this.props.editing
+			<li classes={React.addons.classSet({
+				':::completed': this.props.todo.get('completed'),
+				':::editing': this.props.editing
 			})}>
-				<div class="view">
+				<div classes="view">
 					<input
-						class="toggle"
+						classes="toggle"
 						type="checkbox"
-						checked={this.props.todo.completed}
+						checked={this.props.todo.get('completed')}
 						onChange={this.props.onToggle}
 					/>
 					<label onDoubleClick={this.handleEdit}>
-						{this.props.todo.title}
+						{this.props.todo.get('title')}
 					</label>
-					<button class="destroy" onClick={this.props.onDestroy} />
+					<button classes="destroy" onClick={this.props.onDestroy} />
 				</div>
 				<input
 					ref="editField"
-					class="edit"
+					classes="edit"
 					value={this.state.editText}
 					onBlur={this.handleSubmit}
 					onChange={this.handleChange}
