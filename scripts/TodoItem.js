@@ -64,13 +64,13 @@ var TodoItem = React.createClass({
 
 	render: function () {
 		return (
-			<li class={React.addons.classSet({
+			<li classes={React.addons.classSet({
 				":::completed": this.props.todo.completed,
 				":::editing": this.props.editing
 			})}>
-				<div class="view">
+				<div classes="view">
 					<input
-						class="toggle"
+						classes="toggle"
 						type="checkbox"
 						checked={this.props.todo.completed}
 						onChange={this.props.onToggle}
@@ -78,11 +78,11 @@ var TodoItem = React.createClass({
 					<label onDoubleClick={this.handleEdit}>
 						{this.props.todo.title}
 					</label>
-					<button class="destroy" onClick={this.props.onDestroy} />
+					<button classes="destroy" onClick={this.props.onDestroy} />
 				</div>
 				<input
 					ref="editField"
-					class="edit"
+					classes="edit"
 					value={this.state.editText}
 					onBlur={this.handleSubmit}
 					onChange={this.handleChange}

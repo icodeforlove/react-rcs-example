@@ -11,7 +11,7 @@ button {
 	outline: none;
 }
 
-button, input {
+input {
 	outline: none;
 }
 

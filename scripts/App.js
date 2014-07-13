@@ -135,14 +135,14 @@ var App = React.createClass({
 
 		if (todos.length) {
 			main = (
-				<section class="main">
+				<section classes="main">
 					<input
-						class="toggle-all"
+						classes="toggle-all"
 						type="checkbox"
 						onChange={this.toggleAll}
 						checked={activeTodoCount === 0}
 					/>
-					<ul class="todo-list">
+					<ul classes="todo-list">
 						{todoItems}
 					</ul>
 				</section>
@@ -151,11 +151,11 @@ var App = React.createClass({
 
 		return (
 			<div>
-				<header class="header">
+				<header classes="header">
 					<h1>todos</h1>
 					<input
 						ref="newField"
-						class="new-todo"
+						classes="new-todo"
 						placeholder="What needs to be done?"
 						onKeyDown={this.handleNewTodoKeyDown}
 						autoFocus={true}
