@@ -149,6 +149,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-clean');
 
-	grunt.registerTask('build-dev', ['copy', 'react', 'browserify', 'exorcise', 'rcs', 'mapcatenate', 'clean']);
-	grunt.registerTask('build', ['build-dev', 'concat', 'uglify']);
+	grunt.registerTask('build-dev', ['copy', 'react', 'browserify', 'exorcise', 'rcs', 'mapcatenate', 'clean:build']);
+	grunt.registerTask('build', ['clean', 'build-dev', 'concat', 'uglify']);
 };
