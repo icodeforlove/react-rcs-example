@@ -2,41 +2,98 @@
 
 module.exports = function(grunt) {
 	grunt.initConfig({
-		rcs: {
-			all: {
-				src: ['scripts/**/*.rcs'],
-				dest: 'build/app.css'
-			},
-
-			settings: 'scripts/rcs.settings.js'
-		},
-
+		// convert all .jsx files to .js files in a tmp/output directory
 		react: {
 			options: {
 				harmony: true
+			},
+
+			build: {
+				files: [
+					{
+						expand: true,
+						cwd: 'scripts',
+						src: ['**/*.jsx'],
+						dest: 'tmp/output',
+						ext: '.js'
+					}
+				]
 			}
 		},
 
-		browserify: {
-			options: {
-				transform:  [
-					function (code) {
-						return require('grunt-react').browserify(code, {harmony: true});
-					}
+		// copy all .js files to our tmp/output
+		copy: {
+			js: {
+				files: [
+					{expand: true, cwd: 'scripts/', src: ['**/*.js'], dest: 'tmp/output/'}
 				]
 			},
+
+			rcs: {
+				files: [
+					{expand: true, cwd: 'scripts/', src: ['**/*.rcs'], dest: 'tmp/output/'}
+				]
+			}
+		},
+
+		// browserify our tmp/output
+		browserify: {
+			options: {
+				bundleOptions: {
+					debug: true
+				}
+			},
+
 			build: {
-				src: ['scripts/main.js'],
-				dest: 'build/app.js',
-				options: {
-					noparse: ['react-with-addons'],
-					bundleOptions: {
-						debug: true
-					}
+				src: ['tmp/output/main.js'],
+				dest: 'build/app.js'
+			}
+		},
+
+		// generate an external source map for our build
+		exorcise: {
+			build: {
+				options: {},
+				files: {
+					'build/app.map': ['build/app.js']
 				}
 			}
 		},
 
+		// parse our rcs
+		rcs: {
+			config: {
+				settings: 'scripts/rcs.settings.js'
+			},
+
+			// look into fixing settings and adding it as an option
+			build: {
+				src: ['tmp/output/**/*.rcs'],
+				dest: 'tmp/output/'
+			}
+		},
+
+		// build our css files based on js maps
+		mapcatenate: {
+			config: {
+				srcExtension: '.js',
+				destExtension: '.css'
+			},
+
+			build: {
+				files: {
+					'build/app.css': 'build/app.map'
+				}
+			}
+		},
+
+		// remove all project temp files
+		clean: {
+			build: ['tmp'],
+			cache: ['.rcscache']
+		},
+
+		// create a libs.js build
 		concat: {
 		    options: {
 		      separator: ';',
@@ -58,23 +115,25 @@ module.exports = function(grunt) {
 			}
 		},
 
+		// concat and uglify our libs and app
 		uglify: {
-			my_target: {
+			build: {
 				files: {
 					'build/main.min.js': ['build/libs.js', 'build/app.js']
 				}
 			}
 		},
 
+		// watch any important files
 		watch: {
-			rcs: {
-				files: ['scripts/**/*.rcs'],
-				tasks: ['rcs:all']
+			build: {
+				files: ['scripts/**/*.rcs', 'scripts/**/*.js', 'scripts/**/*.jsx'],
+				tasks: ['build-dev']
 			},
 
-			jsx: {
-				files: ['scripts/**/*.js', 'scripts/**/*.jsx'],
-				tasks: ['build-dev']
+			livereload: {
+				options: { livereload: true },
+				files: ['build/**/*']
 			}
 		}
 	});
@@ -82,10 +141,14 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-browserify');
 	grunt.loadNpmTasks('grunt-react');
 	grunt.loadNpmTasks('grunt-react-rcs');
+	grunt.loadNpmTasks('grunt-mapcatenate');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-exorcise');
+	grunt.loadNpmTasks('grunt-contrib-copy');
+	grunt.loadNpmTasks('grunt-contrib-clean');
 
-	grunt.registerTask('build-dev', ['browserify', 'concat', 'rcs:all']);
-	grunt.registerTask('build', ['browserify', 'concat', 'uglify', 'rcs:all']);
+	grunt.registerTask('build-dev', ['copy', 'react', 'browserify', 'exorcise', 'rcs', 'mapcatenate', 'clean']);
+	grunt.registerTask('build', ['build-dev', 'concat', 'uglify']);
 };

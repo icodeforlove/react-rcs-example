@@ -1,11 +1,11 @@
 view {
 	color: #777;
-	padding: 0 15px;
+	padding: 0 15;
 	position: absolute;
 	right: 0;
-	bottom: -31px;
+	bottom: -31;
 	left: 0;
-	height: 20px;
+	height: 20;
 	z-index: 1;
 	text-align: center;
 
@@ -13,9 +13,9 @@ view {
 		content: '';
 		position: absolute;
 		right: 0;
-		bottom: 31px;
+		bottom: 31;
 		left: 0;
-		height: 50px;
+		height: 50;
 		z-index: -1;
 		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), 0 6px 0 -3px rgba(255, 255, 255, 0.8), 0 7px 1px -3px rgba(0, 0, 0, 0.3), 0 43px 0 -6px rgba(255, 255, 255, 0.8), 0 44px 2px -6px rgba(0, 0, 0, 0.2);
 	}
@@ -42,7 +42,7 @@ view {
 
 		a {
 			color: #83756f;
-			margin: 2px;
+			margin: 2;
 			text-decoration: none;
 		}
 
@@ -59,8 +59,8 @@ view {
 	text-decoration: none;
 	background: rgba(0, 0, 0, 0.1);
 	font-size: 11px;
-	padding: 0 10px;
-	border-radius: 3px;
+	padding: 0 10;
+	border-radius: 3;
 	box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.2);
 
 	:hover {
@@ -70,7 +70,7 @@ view {
 }
 
 .info {
-	margin: 65px auto 0;
+	margin: 65 auto 0;
 	color: #a6a6a6;
 	font-size: 12px;
 	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
@@ -82,8 +82,8 @@ view {
 }
 
 view hr {
-	margin: 20px 0;
+	margin: 20 0;
 	border: 0;
-	border-top: 1px dashed #C5C5C5;
-	border-bottom: 1px dashed #F7F7F7;
+	border-top: 1 dashed #C5C5C5;
+	border-bottom: 1 dashed #F7F7F7;
 }

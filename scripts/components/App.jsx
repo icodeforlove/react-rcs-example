@@ -4,8 +4,8 @@
 
 'use strict';
 
-var Footer = require('./Footer.jsx'),
-	TodoItem = require('./TodoItem.jsx'),
+var Footer = require('./Footer'),
+	TodoItem = require('./TodoItem'),
 	Constants = require('../Constants');
 
 

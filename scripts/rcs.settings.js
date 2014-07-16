@@ -2,12 +2,41 @@
 
 function RCSPropertiesInit (Properties) {
 	Properties.setBaseUrl('http://todomvc.com/architecture-examples/react/bower_components/todomvc-common/');
-	Properties.registerProperty('transition', function (name, value) {
+
+	// defaulting number values to px values
+	Properties.registerProperty(/.*/, function (name, value) {
+		var stringValue = String(value),
+			numberPropertyKeys = /^(?:column-count|fill-opacity|flex|flex-grow|flex-shrink|font-weight|line-height|line-clamp|opacity|order|orphans|widows|z-index|zoom)$/,
+			numberValues = /^([a-z0-9.\-]+) ?(?:([a-z0-9.\-]+) ?)?(?:([a-z0-9.\-]+) ?)?(?:([a-z0-9.\-]+) ?)?$/;
+
+		if (name.match(numberPropertyKeys) || !numberValues.test(stringValue)) {
+			// property is not supported, or value doesnt match the required format
+			return;
+		}
+
+		// replace all numbers with pixels
+		stringValue = stringValue.replace(numberValues, function (string, first, second, third, fourth) {
+			return [first, second, third, fourth].map(function (item) {
+				if (String(parseFloat(item)) !== String(item)) {
+					return item;
+				}
+
+				return item + 'px';
+			}).join(' ').trim();
+		});
+
+		if (value === stringValue) {
+			// nothing changed...
+			return;
+		}
+
 		return {
 			name: name,
-			value: value
+			value: stringValue
 		};
 	});
+
+	// support crossbrowser css gradients
 	Properties.registerProperty('background', function (name, value) {
 		var matches = value.match(/^gradient\(([a-z]+\(.+\)|.+?), ([a-z]+\(.+\)|.+?)\)/);
 

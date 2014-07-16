@@ -10,7 +10,7 @@ view {
 
 .toggle {
 	text-align: center;
-	width: 40px;
+	width: 40;
 	position: absolute;
 	top: 0;
 	bottom: 0;
@@ -20,7 +20,7 @@ view {
 	:after {
 		content: '✔';
 		line-height: 43px;
-		font-size: 20px;
+		font-size: 20;
 		color: #d9d9d9;
 		text-shadow: 0 -1px 0 #bfbfbf;
 	}
@@ -29,7 +29,7 @@ view {
 		::after {
 			color: #85ada7;
 			text-shadow: 0 1px 0 #669991;
-			bottom: 1px;
+			bottom: 1;
 			position: relative;
 		}
 	}
@@ -38,7 +38,7 @@ view {
 @media screen and (-webkit-min-device-pixel-ratio:0) {
 	.toggle {
 		appearance: none;
-		height: 40px;
+		height: 40;
 		background: none;
 	}
 }
@@ -46,8 +46,8 @@ view {
 view label {
 	white-space: pre;
 	word-break: break-word;
-	padding: 15px 60px 15px 15px;
-	margin-left: 45px;
+	padding: 15 60 15 15;
+	margin-left: 45;
 	display: block;
 	line-height: 1.2;
 	transition: color 0.4s;
@@ -62,10 +62,10 @@ view label {
 	display: none;
 	position: absolute;
 	top: 0;
-	right: 10px;
+	right: 10;
 	bottom: 0;
-	width: 40px;
-	height: 40px;
+	width: 40;
+	height: 40;
 	margin: auto 0;
 	font-size: 22px;
 	color: #a88a8a;
@@ -99,7 +99,7 @@ view label {
 	border: 0;
 	outline: none;
 	color: inherit;
-	padding: 6px;
+	padding: 6;
 	border: 1px solid #999;
 	box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
 	box-sizing: border-box;
@@ -108,14 +108,14 @@ view label {
 
 :::editing {
 	:last-child {
-		margin-bottom: -1px;
+		margin-bottom: -1;
 	}
 
 	.edit {
 		display: block;
-		width: 506px;
-		padding: 13px 17px 12px 17px;
-		margin: 0 0 0 43px;
+		width: 506;
+		padding: 13 17 12 17;
+		margin: 0 0 0 43;
 	}
 	.view {
 		display: none;

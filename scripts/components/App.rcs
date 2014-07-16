@@ -1,7 +1,7 @@
 button {
-	margin: 0px;
-	padding: 0px;
-	border: 0px;
+	margin: 0;
+	padding: 0;
+	border: 0;
 	background: none;
 	font-size: 100%;
 	vertical-align: baseline;
@@ -20,7 +20,7 @@ body {
 	line-height: 1.4em;
 	background: #eaeaea url('bg.png');
 	color: #4d4d4d;
-	width: 550px;
+	width: 550;
 	margin: 0 auto;
 	font-smoothing: antialiased;
 }
@@ -28,27 +28,27 @@ body {
 view {
 	background: #fff;
 	background: rgba(255, 255, 255, 0.9);
-	margin: 130px 0 40px 0;
+	margin: 130 0 40 0;
 	border: 1px solid #ccc;
 	position: relative;
-	border-top-left-radius: 2px;
-	border-top-right-radius: 2px;
+	border-top-left-radius: 2;
+	border-top-right-radius: 2;
 	box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.15);
 
 	::before {
 		content: '';
 		border-left: 1px solid #f5d6d6;
 		border-right: 1px solid #f5d6d6;
-		width: 2px;
+		width: 2;
 		position: absolute;
 		top: 0;
-		left: 40px;
+		left: 40;
 		height: 100%;
 	}
 }
 
 .header {
-	padding-top: 15px;
+	padding-top: 15;
 	border-radius: inherit;
 
 	:before {
@@ -57,18 +57,18 @@ view {
 		top: 0;
 		right: 0;
 		left: 0;
-		height: 15px;
+		height: 15;
 		z-index: 2;
 		border-bottom: 1px solid #6c615c;
 		background: gradient(rgba(132, 110, 100, 0.8), rgba(101, 84, 76, 0.8));
-		border-top-left-radius: 1px;
-		border-top-right-radius: 1px;
+		border-top-left-radius: 1;
+		border-top-right-radius: 1;
 	}
 }
 
 view h1 {
 	position: absolute;
-	top: -120px;
+	top: -120;
 	width: 100%;
 	font-size: 70px;
 	font-weight: bold;
@@ -95,13 +95,13 @@ view h1 {
 	border: 0;
 	outline: none;
 	color: inherit;
-	padding: 6px;
+	padding: 6;
 	border: 1px solid #999;
 	box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
 	box-sizing: border-box;
 	font-smoothing: antialiased;
 
-	padding: 16px 16px 16px 60px;
+	padding: 16 16 16 60;
 	border: none;
 	background: rgba(0, 0, 0, 0.02);
 	z-index: 2;
@@ -110,9 +110,9 @@ view h1 {
 
 .toggle-all {
 	position: absolute;
-	top: -42px;
-	left: -4px;
-	width: 40px;
+	top: -42;
+	left: -4;
+	width: 40;
 	text-align: center;
 	// Mobile Safari
 	border: none;
@@ -121,7 +121,7 @@ view h1 {
 		content: "»";
 		font-size: 28px;
 		color: #d9d9d9;
-		padding: 0 25px 7px;
+		padding: 0 25 7;
 	}
 
 	:checked:before {
@@ -132,10 +132,10 @@ view h1 {
 @media screen and (-webkit-min-device-pixel-ratio:0) {
 	.toggle-all {
 		background: none;
-		top: -56px;
-		left: -15px;
-		width: 65px;
-		height: 41px;
+		top: -56;
+		left: -15;
+		width: 65;
+		height: 41;
 		transform: rotate(90deg);
 		appearance: none;
 	}
