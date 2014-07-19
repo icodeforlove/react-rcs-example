@@ -5,7 +5,7 @@ var Backbone = require('backbone'),
 	React = require('react'),
 	Footer = require('./Footer'),
 	TodoItem = require('./TodoItem'),
-	BackboneMixin = require('./mixins/BackboneMixin');
+	BackboneMixin = require('../mixins/BackboneMixin');
 
 var ENTER_KEY = 13;
 
