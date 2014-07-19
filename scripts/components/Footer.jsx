@@ -29,7 +29,8 @@ var Footer = React.createClass({
 				<ul classes="filters">
 					<li>
 						<a
-							href="#/"
+							href="#"
+							onClick={this.props.onShowAll}
 							classes={cx({selected: nowShowing === 'all'})}>
 								All
 						</a>
@@ -37,7 +38,7 @@ var Footer = React.createClass({
 					{' '}
 					<li>
 						<a
-							href="#/active"
+							onClick={this.props.onShowActive}
 							classes={cx({selected: nowShowing === 'active'})}>
 								Active
 						</a>
@@ -45,7 +46,7 @@ var Footer = React.createClass({
 					{' '}
 					<li>
 						<a
-							href="#/completed"
+							onClick={this.props.onShowCompleted}
 							classes={cx({selected: nowShowing === 'completed'})}>
 								Completed
 						</a>

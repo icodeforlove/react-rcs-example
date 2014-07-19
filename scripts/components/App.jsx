@@ -17,7 +17,7 @@ var App = React.createClass({
 	},
 
 	getInitialState: function () {
-		return {editing: null};
+		return {editing: null, nowShowing: null};
 	},
 
 	componentDidMount: function () {
@@ -32,8 +32,8 @@ var App = React.createClass({
 			completed: this.setState.bind(this, {nowShowing: 'completed'})
 		});
 
-		new Router();
-		Backbone.history.start();
+		this.router = new Router();
+		Backbone.history.start({root: '/', pushState: true});
 
 		this.props.todos.fetch();
 	},
@@ -92,6 +92,18 @@ var App = React.createClass({
 		});
 	},
 
+	showAll: function () {
+		this.router.navigate('/', {trigger: true});
+	},
+
+	showActive: function () {
+		this.router.navigate('/active', {trigger: true});
+	},
+
+	showCompleted: function () {
+		this.router.navigate('/completed', {trigger: true});
+	},
+
 	render: function () {
 		var todos = this.props.todos,
 			main,
@@ -101,12 +113,14 @@ var App = React.createClass({
 			activeTodoCount = 0,
 			completedCount = 0;
 
+		var nowShowing = this.state.nowShowing || this.props.nowShowing;
+
 		// do we have any todos?
 		if (todos) {
 			shownTodos = todos.filter(function (todo) {
-				if (this.state.nowShowing === 'active') {
+				if (nowShowing === 'active') {
 					return !todo.get('completed');
-				} else if (this.state.nowShowing === 'completed') {
+				} else if (nowShowing === 'completed') {
 					return todo.get('completed');
 				} else {
 					return true;
@@ -139,8 +153,11 @@ var App = React.createClass({
 					<Footer
 						count={activeTodoCount}
 						completedCount={completedCount}
-						nowShowing={this.state.nowShowing}
+						nowShowing={nowShowing}
 						onClearCompleted={this.clearCompleted}
+						onShowAll={this.showAll}
+						onShowActive={this.showActive}
+						onShowCompleted={this.showCompleted}
 					/>;
 			}
 

@@ -5,21 +5,27 @@ var React = require('react'),
 module.exports = [
 	{
 		method: 'GET',
-		path: '/',
+		path: '/{nowShowing?}',
 
 		config: {
+	    	validate: {
+	    	    params: {
+	    	        nowShowing: Joi.string().regex(/^(?:|active|completed)$/).required()
+	    	    }
+	    	},
 			handler: function (request, reply) {
+
 				reply(
-					'<!doctype html>' +
+					'<!doctype html>\n' +
 					'<html lang="en" data-framework="react">' +
 						'<head>' +
 							'<meta charset="utf-8">' +
 							'<title>React • TodoMVC</title>' +
-							'<link rel="stylesheet" href="app.css">' +
+							'<link rel="stylesheet" href="static/app.css">' +
 						'</head>' +
-						'<body id="app">' + React.renderComponentToString(App()) + '</body>' +
-						'<script type="text/javascript" src="libs.js"></script>' +
-						'<script type="text/javascript" src="app.js"></script>' +
+						'<body id="app">' + React.renderComponentToString(App({nowShowing: request.params.nowShowing})) + '</body>' +
+						'<script type="text/javascript" src="static/libs.js"></script>' +
+						'<script type="text/javascript" src="static/app.js"></script>' +
 					'</html>'
 				);
 			}
