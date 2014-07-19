@@ -1,4 +1,4 @@
-# React RCS Example
+# [React RCS](https://github.com/icodeforlove/react-rcs) Example
 
 run the following
 
