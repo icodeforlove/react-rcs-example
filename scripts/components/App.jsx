@@ -1,10 +1,10 @@
 /** @jsx React.DOM */
 'use strict';
 
-var React = require('react'),
+var Backbone = require('backbone'),
+	React = require('react'),
 	Footer = require('./Footer'),
-	TodoItem = require('./TodoItem'),
-	Constants = require('../Constants');
+	TodoItem = require('./TodoItem');
 
 var ENTER_KEY = 13;
 
@@ -55,9 +55,9 @@ var App = React.createClass({
 				'active': 'active',
 				'completed': 'completed'
 			},
-			all: this.setState.bind(this, {nowShowing: Constants.ALL_TODOS}),
-			active: this.setState.bind(this, {nowShowing: Constants.ACTIVE_TODOS}),
-			completed: this.setState.bind(this, {nowShowing: Constants.COMPLETED_TODOS})
+			all: this.setState.bind(this, {nowShowing: 'all'}),
+			active: this.setState.bind(this, {nowShowing: 'active'}),
+			completed: this.setState.bind(this, {nowShowing: 'completed'})
 		});
 
 		new Router();
@@ -129,19 +129,20 @@ var App = React.createClass({
 
 		if (todos) {
 			shownTodos = todos.filter(function (todo) {
-				switch (this.state.nowShowing) {
-				case Constants.ACTIVE_TODOS:
+				if (this.state.nowShowing === 'active') {
 					return !todo.get('completed');
-				case Constants.COMPLETED_TODOS:
+				} else if (this.state.nowShowing === 'completed') {
 					return todo.get('completed');
-				default:
+				} else {
 					return true;
 				}
 			}, this);
 		}
 
+		var todoItems;
+
 		if (shownTodos) {
-			var todoItems = shownTodos.map(function (todo) {
+			todoItems = shownTodos.map(function (todo) {
 				return (
 					<TodoItem
 						key={todo.get('id')}

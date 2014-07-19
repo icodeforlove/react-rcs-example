@@ -1,8 +1,7 @@
 /** @jsx React.DOM */
 'use strict';
  
-var React = require('react'),
-	Constants = require('../Constants');
+var React = require('react');
 
 var Footer = React.createClass({
 	render: function () {
@@ -31,7 +30,7 @@ var Footer = React.createClass({
 					<li>
 						<a
 							href="#/"
-							classes={cx({selected: nowShowing === Constants.ALL_TODOS})}>
+							classes={cx({selected: nowShowing === 'all'})}>
 								All
 						</a>
 					</li>
@@ -39,7 +38,7 @@ var Footer = React.createClass({
 					<li>
 						<a
 							href="#/active"
-							classes={cx({selected: nowShowing === Constants.ACTIVE_TODOS})}>
+							classes={cx({selected: nowShowing === 'active'})}>
 								Active
 						</a>
 					</li>
@@ -47,7 +46,7 @@ var Footer = React.createClass({
 					<li>
 						<a
 							href="#/completed"
-							classes={cx({selected: nowShowing === Constants.COMPLETED_TODOS})}>
+							classes={cx({selected: nowShowing === 'completed'})}>
 								Completed
 						</a>
 					</li>
