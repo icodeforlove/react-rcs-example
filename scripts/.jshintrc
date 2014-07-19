@@ -1,9 +1,5 @@
 {
 	"node": true,
 	"browser": true,
-	"newcap":false,
-	"globals": {
-		"React": false,
-		"Backbone": false
-	}
+	"newcap":false
 }

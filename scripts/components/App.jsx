@@ -1,13 +1,10 @@
-/**
- * @jsx React.DOM
- */
-
+/** @jsx React.DOM */
 'use strict';
 
-var Footer = require('./Footer'),
+var React = require('react'),
+	Footer = require('./Footer'),
 	TodoItem = require('./TodoItem'),
 	Constants = require('../Constants');
-
 
 var ENTER_KEY = 13;
 
@@ -128,62 +125,74 @@ var App = React.createClass({
 		var main;
 		var todos = this.props.todos;
 
-		var shownTodos = todos.filter(function (todo) {
-			switch (this.state.nowShowing) {
-			case Constants.ACTIVE_TODOS:
-				return !todo.get('completed');
-			case Constants.COMPLETED_TODOS:
-				return todo.get('completed');
-			default:
-				return true;
-			}
-		}, this);
+		var shownTodos;
 
-		var todoItems = shownTodos.map(function (todo) {
-			return (
-				<TodoItem
-					key={todo.get('id')}
-					todo={todo}
-					onToggle={todo.toggle.bind(todo)}
-					onDestroy={todo.destroy.bind(todo)}
-					onEdit={this.edit.bind(this, todo)}
-					editing={this.state.editing === todo.get('id')}
-					onSave={this.save.bind(this, todo)}
-					onCancel={this.cancel}
-				/>
-			);
-		}, this);
-
-		var activeTodoCount = todos.reduce(function (accum, todo) {
-			return todo.get('completed') ? accum : accum + 1;
-		}, 0);
-
-		var completedCount = todos.length - activeTodoCount;
-
-		if (activeTodoCount || completedCount) {
-			footer =
-				<Footer
-					count={activeTodoCount}
-					completedCount={completedCount}
-					nowShowing={this.state.nowShowing}
-					onClearCompleted={this.clearCompleted}
-				/>;
+		if (todos) {
+			shownTodos = todos.filter(function (todo) {
+				switch (this.state.nowShowing) {
+				case Constants.ACTIVE_TODOS:
+					return !todo.get('completed');
+				case Constants.COMPLETED_TODOS:
+					return todo.get('completed');
+				default:
+					return true;
+				}
+			}, this);
 		}
 
-		if (todos.length) {
-			main = (
-				<section classes="main">
-					<input
-						classes="toggle-all"
-						type="checkbox"
-						onChange={this.toggleAll}
-						checked={activeTodoCount === 0}
+		if (shownTodos) {
+			var todoItems = shownTodos.map(function (todo) {
+				return (
+					<TodoItem
+						key={todo.get('id')}
+						todo={todo}
+						onToggle={todo.toggle.bind(todo)}
+						onDestroy={todo.destroy.bind(todo)}
+						onEdit={this.edit.bind(this, todo)}
+						editing={this.state.editing === todo.get('id')}
+						onSave={this.save.bind(this, todo)}
+						onCancel={this.cancel}
 					/>
-					<ul classes="todo-list">
-						{todoItems}
-					</ul>
-				</section>
-			);
+				);
+			}, this);
+		}
+
+		var activeTodoCount = 0,
+			completedCount = 0;
+
+		if (todos) {
+			activeTodoCount = todos.reduce(function (accum, todo) {
+				return todo.get('completed') ? accum : accum + 1;
+			}, 0);
+
+
+			completedCount = todos.length - activeTodoCount;
+
+			if (activeTodoCount || completedCount) {
+				footer =
+					<Footer
+						count={activeTodoCount}
+						completedCount={completedCount}
+						nowShowing={this.state.nowShowing}
+						onClearCompleted={this.clearCompleted}
+					/>;
+			}
+
+			if (todos.length) {
+				main = (
+					<section classes="main">
+						<input
+							classes="toggle-all"
+							type="checkbox"
+							onChange={this.toggleAll}
+							checked={activeTodoCount === 0}
+						/>
+						<ul classes="todo-list">
+							{todoItems}
+						</ul>
+					</section>
+				);
+			}
 		}
 
 		return (

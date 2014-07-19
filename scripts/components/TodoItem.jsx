@@ -1,7 +1,7 @@
-/**
- * @jsx React.DOM
- */
+/** @jsx React.DOM */
 'use strict';
+
+var React = require('react');
 
 var ESCAPE_KEY = 27;
 var ENTER_KEY = 13;

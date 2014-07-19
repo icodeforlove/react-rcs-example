@@ -3,28 +3,30 @@
   "version": "0.0.0",
   "description": "TodoMVC example using React, and RCS.",
   "main": "Gruntfile.js",
-  "dependencies": {},
   "browser": {
-    "director": "./bower_components/director/build/director.js",
-    "underscore": "./bower_components/underscore/underscore.js",
-    "backbone": "./bower_components/backbone/backbone.js",
-    "backbone.localstorage": "./bower_components/backbone.localstorage/backbone.localstorage.js",
-    "react-with-addons": "./bower_components/react/react-with-addons.js",
-    "react-rcs": "./bower_components/react-rcs/rcs.min.js"
+    "director": "./bower_components/director/build/director.js"
   },
   "devDependencies": {
     "grunt": "~0.4.5",
     "react-rcs": "git://github.com/icodeforlove/react-rcs.git",
     "grunt-browserify": "~2.1.3",
     "grunt-react": "~0.8.2",
-    "grunt-react-rcs": "~0.0.2",
+    "grunt-react-rcs": "0.0.5",
     "grunt-contrib-watch": "~0.6.1",
     "grunt-contrib-concat": "~0.4.0",
     "grunt-contrib-uglify": "~0.5.0",
     "grunt-contrib-copy": "~0.5.0",
-    "grunt-mapcatenate": "0.0.1",
     "grunt-contrib-clean": "~0.5.0",
-    "grunt-exorcise": "~0.1.0"
+    "webpack": "~1.3.2-beta1",
+    "webpack-dev-server": "~1.4.7",
+    "grunt-webpack": "~1.0.7",
+    "grunt-hashmap": "~0.1.5",
+    "grunt-cssurlrev": "~0.1.2",
+    "grunt-mapcatenate": "0.0.3",
+    "hapi": "~6.2.0",
+    "config": "~0.4.36",
+    "react": "~0.11.0",
+    "joi": "~4.6.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

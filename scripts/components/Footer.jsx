@@ -1,9 +1,8 @@
-/**
- * @jsx React.DOM
- */
- 'use strict';
+/** @jsx React.DOM */
+'use strict';
  
-var Constants = require('../Constants');
+var React = require('react'),
+	Constants = require('../Constants');
 
 var Footer = React.createClass({
 	render: function () {

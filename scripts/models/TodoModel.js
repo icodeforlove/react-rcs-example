@@ -1,4 +1,7 @@
-var TodoModel = Backbone.Model.extend({
+var Backbone = require('backbone'),
+	Model = require('./Model');
+
+var TodoModel = Model.extend({
 	// Default attributes for the todo
 	// and ensure that each todo created has `title` and `completed` keys.
 	defaults: {
@@ -14,8 +17,9 @@ var TodoModel = Backbone.Model.extend({
 	},
 
 	sync: function () {
-		console.log(arguments);
-		Backbone.Model.prototype.sync.apply(this, arguments);
+		if (typeof window !== 'undefined') {
+			Backbone.Model.prototype.sync.apply(this, arguments);
+		}
 	}
 });
 

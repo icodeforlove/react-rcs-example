@@ -1,1 +1,4 @@
 .rcscache
+build
+build-dev
+tmp

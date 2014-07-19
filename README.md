@@ -1,4 +1,4 @@
-# [React RCS](https://github.com/icodeforlove/react-rcs) Example
+# React RCS Example
 
 run the following
 
@@ -6,6 +6,7 @@ run the following
 npm install
 bower install
 grunt build
+node server
 ```
 
-then open up the index.html
+this is an example of build RCS, and react server-side rendering!
